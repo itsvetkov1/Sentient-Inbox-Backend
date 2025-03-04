@@ -1,0 +1,42 @@
+# Core Dependencies
+google-auth-oauthlib>=0.8.0    # Gmail OAuth integration
+google-api-python-client>=2.0.0 # Gmail API client
+openai>=1.0.0                  # OpenAI integration
+python-dotenv>=1.0.0           # Environment management
+protobuf>=4.0.0                # Protocol buffers support
+groq>=0.3.0                    # Groq AI integration
+cryptography>=41.0.0           # Secure storage encryption
+
+# Authentication Dependencies
+passlib>=1.7.4                 # Password hashing
+bcrypt==3.2.2                  # Secure password hashing backend for passlib (fixed version for compatibility)
+
+# Content Processing
+beautifulsoup4>=4.12.0         # HTML content processing
+lxml>=4.9.0                    # XML/HTML parser
+
+# Networking and Async
+aiohttp>=3.9.0                 # Async HTTP client
+urllib3>=2.0.0                 # HTTP client
+
+# Date/Time Handling
+zoneinfo; python_version < '3.9'  # Timezone support for Python <3.9
+
+# Development Dependencies
+pytest>=7.0.0                  # Testing framework
+pytest-asyncio>=0.21.0         # Async testing support
+pytest-cov>=4.1.0              # Test coverage
+black>=23.0.0                  # Code formatting
+isort>=5.12.0                  # Import sorting
+mypy>=1.0.0                    # Type checking
+
+# API Framework
+fastapi>=0.104.1
+uvicorn>=0.24.0
+pydantic>=2.4.2
+email-validator>=2.1.0
+python-multipart>=0.0.6
+python-jose>=3.3.0
+passlib>=1.7.4
+starlette>=0.27.0
+pydantic-settings>=2.0.0

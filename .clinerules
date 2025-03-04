@@ -1,0 +1,39 @@
+# Project Guidelines
+
+## Security Standards
+DO NOT read or modify:
+- .env files
+- */config/secrets.*
+- token.json
+- client_secret.json
+- Any file containing API keys or credentials
+
+## Documentation Requirements
+- Update relevant documentation in /memory-bank when modifying features
+- Keep README.md in sync with new capabilities
+- Maintain changelog entries in CHANGELOG.md
+
+## Code Style & Patterns
+- Use Python type hints consistently
+- Follow PEP 8 guidelines
+- Place AI processing logic in dedicated agent classes
+- Use repository pattern for data access
+- Follow error handling patterns in enhanced_groq_client.py
+
+## Testing Standards
+- Unit tests required for agent logic
+- Integration tests for email processing
+- Security compliance tests
+- Error handling test cases
+
+## Project Structure
+- Maintain agent separation of concerns
+- Keep configuration in dedicated files
+- Store logs in /logs directory
+- Cache files in /data/cache
+
+## Deployment Practices
+- Never commit sensitive files
+- Use environment variables for configuration
+- Keep dependencies updated
+- Maintain clean git history

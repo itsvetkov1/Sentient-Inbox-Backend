@@ -1,0 +1,1760 @@
+{
+  "requests": [
+    {
+      "timestamp": "2025-02-15T22:13:29.890156",
+      "duration": 0.963997,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:13:30.779459",
+      "duration": 0.889303,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:13:31.274959",
+      "duration": 0.256859,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:13:31.960640",
+      "duration": 0.68468,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:13:32.456074",
+      "duration": 0.27485,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:13:32.710259",
+      "duration": 0.253185,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:13:33.177037",
+      "duration": 0.245997,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:13:33.860998",
+      "duration": 0.682962,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:13:34.411363",
+      "duration": 0.318047,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:13:35.108221",
+      "duration": 0.695858,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:13:35.610291",
+      "duration": 0.270302,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:13:36.076541",
+      "duration": 0.465253,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:13:36.555406",
+      "duration": 0.256315,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:13:36.811995",
+      "duration": 0.256589,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:20:41.056390",
+      "duration": 0.929541,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:20:41.937474",
+      "duration": 0.878083,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:20:42.821146",
+      "duration": 0.649003,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:20:43.072965",
+      "duration": 0.249819,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:20:44.002461",
+      "duration": 0.696478,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:20:44.244083",
+      "duration": 0.239623,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:20:44.750626",
+      "duration": 0.276817,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:20:44.994847",
+      "duration": 0.242217,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:20:45.895780",
+      "duration": 0.675687,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:20:46.576244",
+      "duration": 0.677469,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:20:47.265388",
+      "duration": 0.465075,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:20:47.517984",
+      "duration": 0.250671,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:20:47.993394",
+      "duration": 0.249438,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:20:48.245914",
+      "duration": 0.25052,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:24:12.707967",
+      "duration": 0.558082,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:24:12.934407",
+      "duration": 0.224455,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:24:14.217069",
+      "duration": 0.374795,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:24:14.444373",
+      "duration": 0.224332,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:24:15.057905",
+      "duration": 0.226442,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:24:15.281839",
+      "duration": 0.220939,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:24:15.730194",
+      "duration": 0.224217,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:24:15.956524",
+      "duration": 0.224327,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:24:16.683233",
+      "duration": 0.221488,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:24:19.478775",
+      "duration": 2.793542,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:24:20.123972",
+      "duration": 0.145331,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:24:20.247129",
+      "duration": 0.120158,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:24:20.603429",
+      "duration": 0.121149,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-15T22:24:21.157401",
+      "duration": 0.551972,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:08:14.516028",
+      "duration": 0.961139,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:08:14.974502",
+      "duration": 0.454474,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:08:16.093907",
+      "duration": 0.532769,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:08:16.607866",
+      "duration": 0.49896,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:08:17.581632",
+      "duration": 0.501111,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:08:20.519155",
+      "duration": 2.924412,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:08:22.147493",
+      "duration": 1.620333,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:08:23.672729",
+      "duration": 1.525236,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:11:16.828017",
+      "duration": 0.924624,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:11:17.208831",
+      "duration": 0.374833,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:11:17.902300",
+      "duration": 0.441,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:11:18.336831",
+      "duration": 0.42753,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:11:18.987517",
+      "duration": 0.425688,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:11:19.435362",
+      "duration": 0.443844,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:13:29.515097",
+      "duration": 0.383189,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:13:29.876097",
+      "duration": 0.354999,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:13:30.302570",
+      "duration": 0.187,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:13:30.498571",
+      "duration": 0.191002,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:13:31.175602",
+      "duration": 0.40503,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:13:31.382732",
+      "duration": 0.200129,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:13:31.875210",
+      "duration": 0.268217,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:13:32.083208",
+      "duration": 0.199999,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:13:32.595568",
+      "duration": 0.224637,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:13:32.863499",
+      "duration": 0.25993,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:28:40.160033",
+      "duration": 0.595965,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:28:40.389003",
+      "duration": 0.22375,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:28:40.770196",
+      "duration": 0.138668,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:28:40.916857",
+      "duration": 0.141662,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:28:41.296105",
+      "duration": 0.144235,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:28:41.441848",
+      "duration": 0.140235,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:28:41.920469",
+      "duration": 0.139216,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:28:42.064868",
+      "duration": 0.139331,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:34:07.833470",
+      "duration": 0.572604,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:34:07.841810",
+      "duration": 0.57207,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:34:08.277682",
+      "duration": 0.14851,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:34:08.311254",
+      "duration": 0.190842,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:34:08.689177",
+      "duration": 0.137521,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:34:08.741279",
+      "duration": 0.189623,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:34:09.158650",
+      "duration": 0.185739,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-16T22:34:09.194948",
+      "duration": 0.222037,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T14:36:10.852203",
+      "duration": 0.536985,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T14:36:10.873791",
+      "duration": 0.551574,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T14:36:21.980416",
+      "duration": 0.251657,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T14:36:22.700780",
+      "duration": 0.966504,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T14:37:49.293245",
+      "duration": 0.251239,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T14:37:49.527869",
+      "duration": 0.491865,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T14:37:49.685869",
+      "duration": 0.156005,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T14:37:49.735508",
+      "duration": 0.205644,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T14:37:50.334352",
+      "duration": 0.142306,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T14:37:50.634265",
+      "duration": 0.444221,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T14:37:50.854608",
+      "duration": 0.218343,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T14:37:50.864073",
+      "duration": 0.227808,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T14:37:51.573324",
+      "duration": 0.236489,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T14:37:51.575321",
+      "duration": 0.236488,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T14:37:52.120903",
+      "duration": 0.193832,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T14:37:52.360858",
+      "duration": 0.435964,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T14:37:52.839801",
+      "duration": 0.130838,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T14:37:52.968964",
+      "duration": 0.258001,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T14:37:53.798129",
+      "duration": 0.126322,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T14:37:53.925812",
+      "duration": 0.252003,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T14:40:32.069918",
+      "duration": 0.34525,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T14:40:32.224693",
+      "duration": 0.506024,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T14:40:32.411824",
+      "duration": 0.184827,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T14:40:32.419084",
+      "duration": 0.192087,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T14:40:33.130510",
+      "duration": 0.23262,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T14:40:33.152538",
+      "duration": 0.251647,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T14:40:33.315720",
+      "duration": 0.161148,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T14:40:33.370963",
+      "duration": 0.216391,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T14:40:33.933435",
+      "duration": 0.174704,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T14:40:33.998438",
+      "duration": 0.241709,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T14:40:34.578739",
+      "duration": 0.162002,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T14:40:34.696563",
+      "duration": 0.277567,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T14:40:35.274683",
+      "duration": 0.200872,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T14:40:35.278950",
+      "duration": 0.203141,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T14:40:36.185260",
+      "duration": 0.153432,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T14:40:36.267260",
+      "duration": 0.23743,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T15:01:08.614758",
+      "duration": 0.409424,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T15:01:08.653802",
+      "duration": 0.442469,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T15:01:08.824309",
+      "duration": 0.167784,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T15:01:08.842310",
+      "duration": 0.185785,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T15:01:09.460492",
+      "duration": 0.197988,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T15:01:09.505349",
+      "duration": 0.244841,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T15:01:10.149780",
+      "duration": 0.279693,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T15:01:10.557448",
+      "duration": 0.685362,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T15:04:04.089440",
+      "duration": 0.278852,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T15:04:04.165344",
+      "duration": 0.359756,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T15:04:05.958778",
+      "duration": 0.145239,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T15:04:05.994550",
+      "duration": 0.177008,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T15:04:06.407322",
+      "duration": 0.114757,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T15:04:06.578261",
+      "duration": 0.282693,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T15:04:06.946190",
+      "duration": 0.118387,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T15:04:07.016482",
+      "duration": 0.184678,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T15:04:07.443603",
+      "duration": 0.197768,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T15:04:07.448706",
+      "duration": 0.197873,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T17:02:20.725965",
+      "duration": 1.00443,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T17:02:21.904486",
+      "duration": 2.178907,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T17:02:25.803390",
+      "duration": 2.12234,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T17:02:25.872560",
+      "duration": 2.18551,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T17:02:26.312611",
+      "duration": 0.184868,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T17:02:26.412156",
+      "duration": 0.287412,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T17:02:26.778275",
+      "duration": 0.128747,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T17:02:26.907982",
+      "duration": 0.262456,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T17:02:27.261584",
+      "duration": 0.120045,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T17:02:27.433433",
+      "duration": 0.294893,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T17:02:27.844730",
+      "duration": 0.18489,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T17:02:27.930154",
+      "duration": 0.267314,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T17:04:29.742405",
+      "duration": 0.568671,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T17:04:29.773375",
+      "duration": 0.595642,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T17:04:32.491832",
+      "duration": 0.525427,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T17:04:32.526940",
+      "duration": 0.553535,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T17:04:33.003481",
+      "duration": 0.231299,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T17:04:33.014285",
+      "duration": 0.239102,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T17:04:33.630577",
+      "duration": 0.376215,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T17:04:33.644577",
+      "duration": 0.386215,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T17:04:34.661623",
+      "duration": 0.736037,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T17:04:35.177157",
+      "duration": 1.248571,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T17:04:36.616153",
+      "duration": 1.199552,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T17:04:36.627117",
+      "duration": 1.207516,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:06:17.506235",
+      "duration": 0.85351,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:06:17.669236",
+      "duration": 1.008515,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:06:18.458265",
+      "duration": 0.359321,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:06:18.781321",
+      "duration": 0.691355,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:06:19.439331",
+      "duration": 0.390086,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:06:19.810469",
+      "duration": 0.78193,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:06:20.250552",
+      "duration": 0.206177,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:06:20.280812",
+      "duration": 0.236437,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:06:21.018616",
+      "duration": 0.26298,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:06:21.152224",
+      "duration": 0.401897,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:06:21.909431",
+      "duration": 0.507488,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:06:22.031616",
+      "duration": 0.624785,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:06:22.574218",
+      "duration": 0.294999,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:06:22.578217",
+      "duration": 0.305996,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:08:49.210499",
+      "duration": 0.381471,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:08:49.319793",
+      "duration": 0.479074,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:08:49.896443",
+      "duration": 0.27189,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:08:50.026929",
+      "duration": 0.386376,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:08:50.588685",
+      "duration": 0.20579,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:08:50.642675",
+      "duration": 0.242006,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:08:51.007455",
+      "duration": 0.134753,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:08:51.102453",
+      "duration": 0.223751,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:08:51.793585",
+      "duration": 0.214243,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:08:51.936940",
+      "duration": 0.37191,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:08:52.319778",
+      "duration": 0.135773,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:08:52.384716",
+      "duration": 0.188751,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:08:52.813585",
+      "duration": 0.184562,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:08:52.852757",
+      "duration": 0.2354,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:46:52.706251",
+      "duration": 1.016151,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:46:52.714266",
+      "duration": 1.016159,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:46:53.216893",
+      "duration": 0.248963,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:46:53.550092",
+      "duration": 0.588422,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:46:54.163595",
+      "duration": 0.371843,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:46:54.561187",
+      "duration": 0.752747,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:46:55.098582",
+      "duration": 0.304553,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:46:55.480094",
+      "duration": 0.679021,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:46:56.614376",
+      "duration": 0.668103,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:46:56.621377",
+      "duration": 0.681103,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:46:57.164338",
+      "duration": 0.308056,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:46:57.171345",
+      "duration": 0.309059,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:46:57.730415",
+      "duration": 0.307375,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:46:57.739447",
+      "duration": 0.309411,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:47:20.487417",
+      "duration": 0.962726,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:47:20.513422",
+      "duration": 0.981728,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:47:21.087416",
+      "duration": 0.335998,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:47:21.597047",
+      "duration": 0.832629,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:47:22.277015",
+      "duration": 0.438845,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:47:22.282022",
+      "duration": 0.427854,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:47:22.993561",
+      "duration": 0.388546,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:47:23.062561",
+      "duration": 0.467547,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:47:24.115937",
+      "duration": 0.392808,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:47:24.202937",
+      "duration": 0.474808,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:47:24.761600",
+      "duration": 0.320663,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:47:24.805598",
+      "duration": 0.358659,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:47:25.194286",
+      "duration": 0.151679,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T22:47:25.274289",
+      "duration": 0.238692,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T23:03:16.009723",
+      "duration": 0.32293,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T23:03:16.030578",
+      "duration": 0.350787,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T23:03:16.906831",
+      "duration": 0.632615,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T23:03:17.257843",
+      "duration": 0.970249,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T23:03:18.067648",
+      "duration": 0.368013,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T23:03:18.099648",
+      "duration": 0.42635,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T23:03:18.786526",
+      "duration": 0.35788,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T23:03:18.791533",
+      "duration": 0.356886,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T23:03:19.725118",
+      "duration": 0.395565,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T23:03:19.730120",
+      "duration": 0.406568,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T23:03:20.497778",
+      "duration": 0.382904,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T23:03:20.497778",
+      "duration": 0.365655,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T23:03:21.293878",
+      "duration": 0.396821,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T23:03:21.557735",
+      "duration": 0.665813,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T23:05:27.905479",
+      "duration": 0.511637,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T23:05:27.911482",
+      "duration": 0.508783,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T23:05:28.401019",
+      "duration": 0.189028,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T23:05:28.430988",
+      "duration": 0.214,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T23:05:29.077206",
+      "duration": 0.200587,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T23:05:29.582115",
+      "duration": 0.698494,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T23:05:30.005009",
+      "duration": 0.194914,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T23:05:30.134628",
+      "duration": 0.319535,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T23:05:30.665391",
+      "duration": 0.201999,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T23:05:30.870483",
+      "duration": 0.40209,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-17T23:11:15.421025",
+      "duration": 0.902756,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-18T00:00:51.741546",
+      "duration": 0.595196,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-18T00:00:52.052025",
+      "duration": 0.897683,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-18T09:32:28.108106",
+      "duration": 0.229498,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-18T09:32:28.197118",
+      "duration": 0.314509,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-18T09:33:53.036144",
+      "duration": 0.653729,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-18T09:41:20.790519",
+      "duration": 0.720462,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-18T09:56:01.845490",
+      "duration": 0.800613,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-18T15:19:27.743046",
+      "duration": 0.722516,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-18T21:06:05.160867",
+      "duration": 1.806382,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-18T21:12:26.000171",
+      "duration": 1.000466,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-18T21:16:48.021975",
+      "duration": 1.029156,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-18T21:29:05.719971",
+      "duration": 0.695174,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T09:10:52.383709",
+      "duration": 1.712699,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T09:12:38.481579",
+      "duration": 1.31876,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T09:13:41.107922",
+      "duration": 1.466672,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T09:14:43.626254",
+      "duration": 1.383378,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T09:15:47.937553",
+      "duration": 1.592878,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T09:16:51.098005",
+      "duration": 1.723643,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T09:46:19.144980",
+      "duration": 1.809132,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T09:46:21.170340",
+      "duration": 1.314624,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T09:46:23.375116",
+      "duration": 1.446819,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T09:46:25.782196",
+      "duration": 1.627222,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T09:46:27.369634",
+      "duration": 0.90026,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T09:46:29.321516",
+      "duration": 1.234912,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T11:44:05.498054",
+      "duration": 2.115519,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T11:44:08.153382",
+      "duration": 1.150708,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T11:44:10.691000",
+      "duration": 1.597671,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T11:44:13.352891",
+      "duration": 1.703563,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T11:44:15.330395",
+      "duration": 1.136246,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T11:44:17.849110",
+      "duration": 1.673954,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T11:49:45.609213",
+      "duration": 1.945559,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T11:51:09.694029",
+      "duration": 1.757152,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T11:52:12.446188",
+      "duration": 1.489324,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T11:53:15.484321",
+      "duration": 1.563932,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T11:54:18.095920",
+      "duration": 1.266387,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T11:55:20.535601",
+      "duration": 1.536757,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T12:07:05.015755",
+      "duration": 1.509669,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T12:07:06.564327",
+      "duration": 1.152192,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T12:07:08.061007",
+      "duration": 1.107194,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T12:07:09.103025",
+      "duration": 0.546981,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T12:07:10.231005",
+      "duration": 0.609904,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T12:18:22.522828",
+      "duration": 1.5269,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T12:18:24.308009",
+      "duration": 0.829813,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T12:18:26.212124",
+      "duration": 1.243102,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T12:18:28.431342",
+      "duration": 1.38834,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T12:18:30.117231",
+      "duration": 0.991191,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T12:46:13.184103",
+      "duration": 1.642144,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T12:47:02.792757",
+      "duration": 1.702583,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T12:48:05.646152",
+      "duration": 1.61081,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T12:49:07.862296",
+      "duration": 1.114489,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T12:50:10.802632",
+      "duration": 1.309608,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T13:03:56.764023",
+      "duration": 1.87632,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-19T15:41:04.779868",
+      "duration": 1.245004,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-20T09:09:06.106684",
+      "duration": 0.303084,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-20T09:09:06.118264",
+      "duration": 0.310662,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-20T09:09:06.534372",
+      "duration": 0.140994,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-20T09:09:06.543062",
+      "duration": 0.146688,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-20T09:09:06.907514",
+      "duration": 0.13721,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-20T09:09:06.913440",
+      "duration": 0.140141,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-20T16:54:06.266163",
+      "duration": 0.243007,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-20T16:54:06.295586",
+      "duration": 0.27743,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-20T16:54:06.727432",
+      "duration": 0.148702,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-20T16:54:07.497331",
+      "duration": 0.914556,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-20T16:54:07.862725",
+      "duration": 0.134279,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-20T16:54:07.867730",
+      "duration": 0.134284,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-22T10:06:25.610124",
+      "duration": 2.898148,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-22T10:06:25.618105",
+      "duration": 2.90013,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-22T10:06:26.101193",
+      "duration": 0.144622,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-22T10:06:26.117962",
+      "duration": 0.153391,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-22T10:06:26.698733",
+      "duration": 0.284285,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-22T10:06:26.799665",
+      "duration": 0.393335,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-22T10:06:27.246677",
+      "duration": 0.159,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-22T10:06:27.255678",
+      "duration": 0.173999,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-22T10:33:25.227248",
+      "duration": 0.883134,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-22T10:33:27.131853",
+      "duration": 1.203641,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-22T10:33:28.898490",
+      "duration": 0.862312,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-22T11:31:53.337803",
+      "duration": 0.825802,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-22T11:31:55.031952",
+      "duration": 0.926732,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-22T11:31:57.182963",
+      "duration": 1.271205,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-23T11:19:28.706994",
+      "duration": 1.074147,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-23T11:19:29.611640",
+      "duration": 0.892961,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-23T11:27:16.129409",
+      "duration": 0.954849,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-23T11:35:56.058551",
+      "duration": 1.024682,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-23T11:37:22.606006",
+      "duration": 0.963453,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-23T11:37:29.488202",
+      "duration": 0.899659,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-23T11:39:25.513348",
+      "duration": 1.009576,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-23T14:16:23.691770",
+      "duration": 1.077277,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-23T14:18:10.666863",
+      "duration": 0.992159,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-23T14:18:17.740164",
+      "duration": 0.937219,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-23T14:20:26.555428",
+      "duration": 0.620677,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-23T14:45:23.323450",
+      "duration": 1.02057,
+      "status": "success"
+    },
+    {
+      "timestamp": "2025-02-23T14:46:42.264338",
+      "duration": 0.602418,
+      "status": "success"
+    }
+  ],
+  "errors": [
+    {
+      "timestamp": "2025-02-18T08:59:54.163769",
+      "error": "Error code: 404 - {'error': {'message': 'The model `deepseek-r1` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}"
+    },
+    {
+      "timestamp": "2025-02-18T08:59:56.272870",
+      "error": "Error code: 404 - {'error': {'message': 'The model `deepseek-r1` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}"
+    },
+    {
+      "timestamp": "2025-02-18T09:00:00.548154",
+      "error": "Error code: 404 - {'error': {'message': 'The model `deepseek-r1` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}"
+    },
+    {
+      "timestamp": "2025-02-18T09:01:36.392207",
+      "error": "Error code: 404 - {'error': {'message': 'The model `deepseek-r1-distill-llama-70b-r1` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}"
+    },
+    {
+      "timestamp": "2025-02-18T09:01:38.505729",
+      "error": "Error code: 404 - {'error': {'message': 'The model `deepseek-r1-distill-llama-70b-r1` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}"
+    },
+    {
+      "timestamp": "2025-02-18T09:01:42.692503",
+      "error": "Error code: 404 - {'error': {'message': 'The model `deepseek-r1-distill-llama-70b-r1` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}"
+    },
+    {
+      "timestamp": "2025-02-18T09:18:39.499893",
+      "error": "Error code: 404 - {'error': {'message': 'The model `deepseek-reasoner` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}"
+    },
+    {
+      "timestamp": "2025-02-18T09:18:41.616430",
+      "error": "Error code: 404 - {'error': {'message': 'The model `deepseek-reasoner` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}"
+    },
+    {
+      "timestamp": "2025-02-18T09:18:45.723805",
+      "error": "Error code: 404 - {'error': {'message': 'The model `deepseek-reasoner` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}"
+    },
+    {
+      "timestamp": "2025-02-22T10:06:15.881443",
+      "error": "Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.3-70b-versatile` in organization `org_01hxe8m45ve3nbsgz2mq4h7zyc` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Requested 23903, please reduce your message size and try again. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "timestamp": "2025-02-22T10:06:15.895734",
+      "error": "Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.3-70b-versatile` in organization `org_01hxe8m45ve3nbsgz2mq4h7zyc` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Requested 23911, please reduce your message size and try again. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "timestamp": "2025-02-22T10:06:18.057341",
+      "error": "Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.3-70b-versatile` in organization `org_01hxe8m45ve3nbsgz2mq4h7zyc` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Requested 23911, please reduce your message size and try again. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "timestamp": "2025-02-22T10:06:18.064344",
+      "error": "Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.3-70b-versatile` in organization `org_01hxe8m45ve3nbsgz2mq4h7zyc` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Requested 23903, please reduce your message size and try again. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "timestamp": "2025-02-22T10:06:22.259509",
+      "error": "Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.3-70b-versatile` in organization `org_01hxe8m45ve3nbsgz2mq4h7zyc` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Requested 23911, please reduce your message size and try again. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "timestamp": "2025-02-22T10:06:22.420135",
+      "error": "Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.3-70b-versatile` in organization `org_01hxe8m45ve3nbsgz2mq4h7zyc` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Requested 23903, please reduce your message size and try again. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "timestamp": "2025-02-22T10:33:16.902790",
+      "error": "Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.3-70b-versatile` in organization `org_01hxe8m45ve3nbsgz2mq4h7zyc` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Requested 24080, please reduce your message size and try again. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "timestamp": "2025-02-22T10:33:19.250534",
+      "error": "Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.3-70b-versatile` in organization `org_01hxe8m45ve3nbsgz2mq4h7zyc` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Requested 24080, please reduce your message size and try again. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "timestamp": "2025-02-22T10:33:23.558997",
+      "error": "Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.3-70b-versatile` in organization `org_01hxe8m45ve3nbsgz2mq4h7zyc` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Requested 24080, please reduce your message size and try again. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "timestamp": "2025-02-22T11:31:44.397574",
+      "error": "Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.3-70b-versatile` in organization `org_01hxe8m45ve3nbsgz2mq4h7zyc` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Requested 24080, please reduce your message size and try again. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "timestamp": "2025-02-22T11:31:47.025262",
+      "error": "Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.3-70b-versatile` in organization `org_01hxe8m45ve3nbsgz2mq4h7zyc` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Requested 24080, please reduce your message size and try again. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "timestamp": "2025-02-22T11:31:51.666398",
+      "error": "Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.3-70b-versatile` in organization `org_01hxe8m45ve3nbsgz2mq4h7zyc` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Requested 24080, please reduce your message size and try again. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    }
+  ],
+  "performance": {
+    "avg_response_time": 0.6038465525525528,
+    "total_requests": 333,
+    "success_rate": 93.69369369369369
+  }
+}

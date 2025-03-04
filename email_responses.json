@@ -1,0 +1,74 @@
+{
+  "responses": [
+    {
+      "email_id": "2025-02-12_15:00_i.b.cvetkov@gmail.com",
+      "response_time": "2025-02-15T11:38:19.633471",
+      "response_data": {
+        "sender": {
+          "email": "i.b.cvetkov@gmail.com",
+          "name": "Ivailo Tsvetkov"
+        },
+        "subject": "Meeting 3",
+        "date": "2025-02-12",
+        "time": "15:00",
+        "response": "Dear Ivailo Tsvetkov,\n\nThank you for your meeting request. To help me properly schedule our meeting, could you please specify the meeting agenda/purpose?\n\nBest regards,\nIvaylo's AI Assistant"
+      }
+    },
+    {
+      "email_id": "2025-02-11_17:00_i.b.cvetkov@gmail.com",
+      "response_time": "2025-02-15T11:38:19.973417",
+      "response_data": {
+        "sender": {
+          "email": "i.b.cvetkov@gmail.com",
+          "name": "Ivailo Tsvetkov"
+        },
+        "subject": "Meeting Request",
+        "date": "2025-02-11",
+        "time": "17:00",
+        "response": "Dear Ivailo Tsvetkov,\n\nThank you for your meeting request. To help me properly schedule our meeting, could you please specify the meeting agenda/purpose?\n\nBest regards,\nIvaylo's AI Assistant"
+      }
+    },
+    {
+      "email_id": "2025-02-14_15:00_i.b.cvetkov@gmail.com",
+      "response_time": "2025-02-15T11:38:20.523632",
+      "response_data": {
+        "sender": {
+          "email": "i.b.cvetkov@gmail.com",
+          "name": "Ivailo Tsvetkov"
+        },
+        "subject": "Meeting Request",
+        "date": "2025-02-14",
+        "time": "15:00",
+        "response": "Dear Ivailo Tsvetkov,\n\nThank you for your meeting request. To help me properly schedule our meeting, could you please specify the meeting agenda/purpose?\n\nBest regards,\nIvaylo's AI Assistant"
+      }
+    },
+    {
+      "email_id": "2025-02-18_14:00_i.b.cvetkov@gmail.com",
+      "response_time": "2025-02-15T11:38:20.956914",
+      "response_data": {
+        "sender": {
+          "email": "i.b.cvetkov@gmail.com",
+          "name": "Ivailo Tsvetkov"
+        },
+        "subject": "future sprint",
+        "date": "2025-02-18",
+        "time": "14:00",
+        "response": "Dear Ivailo Tsvetkov,\n\nThank you for your meeting request. To help me properly schedule our meeting, could you please specify the meeting agenda/purpose?\n\nBest regards,\nIvaylo's AI Assistant"
+      }
+    },
+    {
+      "email_id": "2025-02-16_None_i.b.cvetkov@gmail.com",
+      "response_time": "2025-02-15T11:38:21.354876",
+      "response_data": {
+        "sender": {
+          "email": "i.b.cvetkov@gmail.com",
+          "name": "Ivailo Tsvetkov"
+        },
+        "subject": "finish the deal",
+        "date": "2025-02-16",
+        "time": null,
+        "response": "Dear Ivailo Tsvetkov,\n\nThank you for your meeting request. To help me properly schedule our meeting, could you please specify the meeting time and the meeting agenda/purpose?\n\nBest regards,\nIvaylo's AI Assistant"
+      }
+    }
+  ]
+}

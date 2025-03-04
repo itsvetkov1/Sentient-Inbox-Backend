@@ -1,0 +1,74 @@
+# Explicitly exclude frontend directory
+frontend/
+G:/git_repos/Sentient-Inbox/frontend/
+/frontend/
+
+# Common development files
+*.log
+*.pyc
+__pycache__/
+.pytest_cache/
+*.pyo
+*.pyd
+.coverage
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+
+# Environment and configuration
+.env
+.venv/
+env/
+venv/
+ENV/
+.python-version
+.env.*
+*.env
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Project-specific files that may contain sensitive data
+*.pem
+*.key
+client_secret*.json
+token*.json
+credentials*.json
+.keys/
+*.bin
+
+# Build and distribution
+build/
+dist/
+*.egg-info/
+*.egg
+sdist/
+wheels/
+
+# Database files
+*.db
+*.sqlite3
+
+# Temporary files and backups
+data/secure/backups/
+*.bak
+*.tmp
+temp/
+tmp/
+
+# Git-related
+.git/
+.gitignore
+.gitmodules
+.github/
+
+# Project-specific based on your repository
+email_responses.json
+schedule.json
+meeting_mails.json
+groq_metrics.json
