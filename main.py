@@ -4,17 +4,55 @@ import sys
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, Any
+from dotenv import load_dotenv
 
+# Get project root directory
+PROJECT_ROOT = Path(__file__).parent
+LOGS_DIR = PROJECT_ROOT / 'logs'
+DATA_DIR = PROJECT_ROOT / 'data'
+
+# Create all required directories first
+def setup_directories():
+    """Create required directories for the application"""
+    directories = [
+        LOGS_DIR,
+        DATA_DIR / 'secure',
+        DATA_DIR / 'metrics',
+        DATA_DIR / 'cache'
+    ]
+    for directory in directories:
+        directory.mkdir(parents=True, exist_ok=True)
+
+# Set up directories before any logging
+setup_directories()
+
+def setup_logging():
+    """Configure comprehensive logging"""
+    logging.basicConfig(
+        level=logging.DEBUG,
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+        handlers=[
+            logging.FileHandler(LOGS_DIR / 'main.log'),
+            logging.StreamHandler()
+        ]
+    )
+    
+    # Set specific logger levels
+    logging.getLogger('src.email_processing.analyzers.llama').setLevel(logging.DEBUG)
+    logging.getLogger('src.email_processing.analyzers.deepseek').setLevel(logging.DEBUG)
+    logging.getLogger('src.email_processing.analyzers.response_categorizer').setLevel(logging.DEBUG)
+    logging.getLogger('httpx').setLevel(logging.DEBUG)
+
+# Initialize logging before any other imports
+setup_logging()
+
+# Now import other modules
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from dotenv import load_dotenv
 from api.routes import auth, emails, dashboard
 
-
 sys.path.append(str(Path(__file__).parent / "src"))
-
-
 
 from src.email_processing import (
     EmailProcessor, EmailTopic, EmailAgent, LlamaAnalyzer, 
@@ -59,41 +97,7 @@ class MaintenanceResponse(BaseModel):
     records_cleaned: bool
     success: bool
 
-def setup_logging():
-    """
-    Configure comprehensive logging with detailed formatting and appropriate levels.
-    
-    Implements hierarchical logging configuration to capture:
-    - Detailed API interaction logging
-    - Model inputs/outputs
-    - System state changes
-    - Performance metrics
-    """
-    # Create logs directory if it doesn't exist
-    Path('logs').mkdir(exist_ok=True)
-    
-    # Configure root logger
-    logging.basicConfig(
-        level=logging.DEBUG,  # Set to DEBUG to capture all levels
-        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-        handlers=[
-            logging.FileHandler('logs/main.log'),
-            logging.StreamHandler()
-        ]
-    )
-    
-    # Set specific logger levels
-    logging.getLogger('src.email_processing.analyzers.llama').setLevel(logging.DEBUG)
-    logging.getLogger('src.email_processing.analyzers.deepseek').setLevel(logging.DEBUG)
-    logging.getLogger('src.email_processing.analyzers.response_categorizer').setLevel(logging.DEBUG)
-    logging.getLogger('httpx').setLevel(logging.DEBUG)  # For API calls
-
-setup_logging()
-
 logger = logging.getLogger(__name__)
-
-# Ensure logs directory exists
-Path('logs').mkdir(exist_ok=True)
 
 def log_execution(message: str):
     """Log execution with timestamp"""

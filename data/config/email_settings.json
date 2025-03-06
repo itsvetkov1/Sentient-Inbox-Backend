@@ -1,0 +1,12 @@
+{
+  "batch_size": 50,
+  "auto_respond_enabled": true,
+  "confidence_threshold": 0.7,
+  "processing_interval_minutes": 15,
+  "max_tokens_per_analysis": 4000,
+  "models": {
+    "classification": "llama-3.3-70b-versatile",
+    "analysis": "deepseek-reasoner",
+    "response": "llama-3.3-70b-versatile"
+  }
+}

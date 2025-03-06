@@ -210,6 +210,7 @@ class GmailAuthenticationManager:
         Args:
             credentials: Credentials object to save
         """
+        backup_path = None
         # Create backup of existing token if it exists
         if self.token_path.exists():
             backup_path = self.token_path.with_suffix('.backup')
@@ -228,8 +229,8 @@ class GmailAuthenticationManager:
         except Exception as e:
             logger.error(f"Error saving credentials: {str(e)}")
             # Restore backup if save failed
-            if backup_path.exists():
-                backup_path.rename(self.token_path)
+            if backup_path and backup_path.exists():
+               backup_path.rename(self.token_path)
 
     def _handle_invalid_token(self):
         """Handle invalid token situation with cleanup and logging."""

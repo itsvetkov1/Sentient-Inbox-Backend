@@ -8,12 +8,21 @@ from pathlib import Path
 from dotenv import load_dotenv
 import logging
 
+# Get the project root directory
+PROJECT_ROOT = Path(__file__).parent.parent.parent.parent
+LOGS_DIR = PROJECT_ROOT / 'logs'
+DATA_DIR = PROJECT_ROOT / 'data'
+
+# Ensure directories exist
+LOGS_DIR.mkdir(parents=True, exist_ok=True)
+(DATA_DIR / 'metrics').mkdir(parents=True, exist_ok=True)
+
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('logs/groq_client.log'),
+        logging.FileHandler(LOGS_DIR / 'groq_client.log'),
         logging.StreamHandler()
     ]
 )
@@ -32,9 +41,7 @@ class EnhancedGroqClient:
 
         self.client = Groq(api_key=self.api_key)
 
-        # Create metrics directory if it doesn't exist
-        Path('data/metrics').mkdir(parents=True, exist_ok=True)
-        self.metrics_file = 'data/metrics/groq_metrics.json'
+        self.metrics_file = DATA_DIR / 'metrics' / 'groq_metrics.json'
         self.load_metrics()
 
     def load_metrics(self):

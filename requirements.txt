@@ -9,7 +9,7 @@ cryptography>=41.0.0           # Secure storage encryption
 
 # Authentication Dependencies
 passlib>=1.7.4                 # Password hashing
-bcrypt==3.2.2                  # Secure password hashing backend for passlib (fixed version for compatibility)
+bcrypt==4.0.1                  # Secure password hashing backend for passlib (fixed version for compatibility)
 
 # Content Processing
 beautifulsoup4>=4.12.0         # HTML content processing

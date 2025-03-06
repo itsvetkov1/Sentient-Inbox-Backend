@@ -1,0 +1,13 @@
+{
+  "total_emails_processed": 0,
+  "emails_by_category": {
+    "meeting": 0,
+    "needs_review": 0,
+    "not_actionable": 0,
+    "not_meeting": 0
+  },
+  "average_processing_time_ms": 0,
+  "success_rate": 0,
+  "stats_period_days": 30,
+  "last_updated": "2025-03-04T23:41:53.382307"
+}
