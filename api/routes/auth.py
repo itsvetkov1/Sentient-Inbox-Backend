@@ -1,36 +1,46 @@
 """
-Authentication API Routes with Google OAuth Support
+Authentication API Routes with Multi-Provider OAuth Support
 
 Implements comprehensive authentication endpoints with proper
-security practices, validation, error handling, and Google OAuth
-integration for Gmail access.
+security practices, validation, error handling, and multi-provider
+OAuth integration for Gmail and Outlook access.
 
 Design Considerations:
 - Robust token generation and validation
-- Google OAuth authorization flow
+- Multi-provider OAuth authorization flow
 - Comprehensive input validation
 - Proper error handling and logging
 - Clear response formats
 """
 
+import os
 import logging
 from datetime import timedelta
-from typing import Dict, Any
-from pydantic import BaseModel, Field
+from typing import Dict, Any, List
 
-from fastapi import APIRouter, Depends, HTTPException, status, Request
+from fastapi import APIRouter, Depends, HTTPException, status, Request, Query
 from fastapi.security import OAuth2PasswordRequestForm
 from fastapi.responses import RedirectResponse, JSONResponse
 
 from api.auth.service import AuthenticationService, get_auth_service
-from api.models.auth import Token, UserCredentials, UserLoginResponse, GoogleAuthRequest, GoogleCallbackRequest
+from api.models.auth import (
+    Token, UserCredentials, UserLoginResponse, 
+    OAuthLoginRequest, OAuthCallbackRequest, OAuthLoginResponse,
+    OAuthCallbackResponse, User, AvailableProvidersResponse
+)
 from api.config import get_settings
+from src.auth.oauth_factory import OAuthProviderFactory
+from src.storage.user_repository import UserRepository
+from src.storage.database import init_db
 
 # Configure logging
 logger = logging.getLogger(__name__)
 
 # Create router
 router = APIRouter(tags=["Authentication"])
+
+# Initialize database on startup
+init_db()
 
 @router.post(
     "/token",
@@ -56,7 +66,7 @@ async def login_for_access_token(
     Raises:
         HTTPException: If authentication fails
     """
-    user = auth_service.authenticate_user(form_data.username, form_data.password)
+    user = await auth_service.authenticate_user(form_data.username, form_data.password)
     if not user:
         logger.warning(f"Failed authentication attempt for user: {form_data.username}")
         raise HTTPException(
@@ -81,196 +91,142 @@ async def login_for_access_token(
         expires_in=settings.JWT_TOKEN_EXPIRE_MINUTES * 60  # Convert to seconds
     )
 
-@router.post(
-    "/google-auth",
-    response_model=Token,
-    summary="Authenticate with Google OAuth"
+@router.get(
+    "/oauth/providers",
+    response_model=AvailableProvidersResponse,
+    summary="Get available OAuth providers"
 )
-async def google_auth(
-    token_data: GoogleAuthRequest,
+async def get_available_providers():
+    """
+    Get list of available OAuth providers for login.
+    
+    Returns a list of available OAuth providers that can be used
+    for authentication with their display names.
+    
+    Returns:
+        Dictionary of provider codes to display names
+    """
+    providers = OAuthProviderFactory.get_available_providers()
+    return AvailableProvidersResponse(providers=providers)
+
+@router.post(
+    "/oauth/login",
+    response_model=OAuthLoginResponse,
+    summary="Initiate OAuth login flow"
+)
+async def oauth_login(
+    request: OAuthLoginRequest,
     auth_service: AuthenticationService = Depends(get_auth_service)
 ):
     """
-    Authenticate user with Google OAuth token.
+    Initiate OAuth login flow for specified provider.
     
-    Verifies Google ID token, creates or updates user record,
-    and generates system JWT token for authenticated user.
+    Generates an authorization URL for the specified OAuth provider
+    that the client should redirect the user to for authorization.
     
     Args:
-        token_data: Google authentication data including ID token
+        request: OAuth login request with provider and redirect URI
         
     Returns:
-        JWT token response with access token
+        Authorization URL and state for the OAuth flow
+        
+    Raises:
+        HTTPException: If provider is not supported or configuration is invalid
     """
     try:
-        # Verify Google ID token with Google's API
-        google_user_info = await auth_service.verify_google_token(token_data.id_token)
-        
-        if not google_user_info:
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Invalid Google token",
-                headers={"WWW-Authenticate": "Bearer"},
-            )
-        
-        # Get or create user from Google information
-        user = await auth_service.get_or_create_google_user(google_user_info)
-        
-        # Create access token
-        settings = get_settings()
-        access_token_expires = timedelta(minutes=settings.JWT_TOKEN_EXPIRE_MINUTES)
-        access_token = auth_service.create_access_token(
-            data={
-                "username": user["username"],
-                "permissions": user["permissions"]
-            },
-            expires_delta=access_token_expires,
+        authorization_url, state = await auth_service.get_authorization_url(
+            request.provider, 
+            request.redirect_uri
         )
         
-        return Token(
-            access_token=access_token,
-            token_type="bearer",
-            expires_in=settings.JWT_TOKEN_EXPIRE_MINUTES * 60  # Convert to seconds
+        logger.info(f"Generated OAuth authorization URL for provider: {request.provider}")
+        
+        return OAuthLoginResponse(
+            authorization_url=authorization_url,
+            state=state
         )
         
-    except Exception as e:
-        logger.error(f"Google authentication error: {str(e)}")
+    except ValueError as e:
+        logger.error(f"Error generating OAuth login URL: {str(e)}")
         raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Authentication failed",
-            headers={"WWW-Authenticate": "Bearer"},
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(e)
         )
-
-@router.get(
-    "/google-login",
-    summary="Initiate Google OAuth login flow"
-)
-async def google_login(auth_service: AuthenticationService = Depends(get_auth_service)):
-    """
-    Initiate Google OAuth login flow for Gmail access.
-    
-    Redirects the user to the Google authorization page with
-    appropriate scopes for Gmail access. This is the endpoint
-    that the "Login with Google" button should link to.
-    
-    Returns:
-        Redirect to Google authorization page
-    """
-    try:
-        # Generate authorization URL with appropriate scopes
-        auth_url = auth_service.get_google_auth_url()
-        
-        # Redirect to Google authorization page
-        return RedirectResponse(auth_url)
-        
     except Exception as e:
-        logger.error(f"Error initiating Google login: {str(e)}")
+        logger.error(f"Unexpected error in OAuth login: {str(e)}")
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Failed to initiate Google login"
+            detail="Failed to initiate OAuth login"
         )
 
-@router.get(
-    "/google-callback",
-    summary="Handle Google OAuth callback"
+@router.post(
+    "/oauth/callback",
+    response_model=OAuthCallbackResponse,
+    summary="Handle OAuth callback"
 )
-async def google_callback(
-    request: Request,
+async def oauth_callback(
+    request: OAuthCallbackRequest,
     auth_service: AuthenticationService = Depends(get_auth_service)
 ):
     """
-    Handle Google OAuth callback after user authorization.
+    Process OAuth callback after user authorization.
     
-    Processes the authorization code from Google, exchanges it for
-    access and refresh tokens, and creates a user session.
+    Exchanges the authorization code for access and refresh tokens,
+    creates or updates the user in the database, and returns a JWT token
+    for API authentication.
     
     Args:
-        request: Request object containing authorization code
+        request: OAuth callback request with code and state
         
     Returns:
-        Redirect to frontend with authentication information
+        User information and JWT access token
+        
+    Raises:
+        HTTPException: If OAuth callback processing fails
     """
     try:
-        # Extract authorization code from query parameters
-        code = request.query_params.get("code")
-        error = request.query_params.get("error")
-        
-        if error:
-            logger.error(f"Google OAuth error: {error}")
-            return JSONResponse(
-                content={"status": "error", "message": f"Google OAuth error: {error}"},
-                status_code=400
-            )
-        
-        if not code:
-            logger.error("No authorization code provided")
-            return JSONResponse(
-                content={"status": "error", "message": "No authorization code provided"},
-                status_code=400
-            )
-        
-        # Exchange code for tokens
-        tokens = await auth_service.exchange_code_for_tokens(code)
-        if not tokens:
-            logger.error("Failed to exchange code for tokens")
-            return JSONResponse(
-                content={"status": "error", "message": "Failed to exchange code for tokens"},
-                status_code=400
-            )
-        
-        # Extract ID token from tokens response
-        id_token = tokens.get("id_token")
-        if not id_token:
-            logger.error("No ID token in response")
-            return JSONResponse(
-                content={"status": "error", "message": "No ID token in response"},
-                status_code=400
-            )
-        
-        # Verify ID token and get user info
-        google_user_info = await auth_service.verify_google_token(id_token)
-        if not google_user_info:
-            logger.error("Failed to verify ID token")
-            return JSONResponse(
-                content={"status": "error", "message": "Failed to verify ID token"},
-                status_code=400
-            )
-        
-        # Get or create user
-        user = await auth_service.get_or_create_google_user(google_user_info)
-        
-        # Create system access token
-        settings = get_settings()
-        access_token_expires = timedelta(minutes=settings.JWT_TOKEN_EXPIRE_MINUTES)
-        access_token = auth_service.create_access_token(
-            data={
-                "username": user["username"],
-                "permissions": user["permissions"]
-            },
-            expires_delta=access_token_expires,
+        # Process OAuth callback
+        result = await auth_service.process_oauth_callback(
+            request.provider,
+            request.code,
+            request.redirect_uri
         )
         
-        # Store Gmail tokens in user session
-        # In a real implementation, these would be stored in a secure database
-        # associated with the user
-        user["gmail_tokens"] = {
-            "access_token": tokens.get("access_token"),
-            "refresh_token": tokens.get("refresh_token"),
-            "expires_in": tokens.get("expires_in"),
-            "token_type": tokens.get("token_type")
-        }
+        # Extract user and token information
+        user_dict = result["user"]
+        user = User(
+            id=user_dict["id"],
+            username=user_dict["username"],
+            email=user_dict["email"],
+            display_name=user_dict.get("display_name"),
+            permissions=user_dict["permissions"],
+            profile_picture=user_dict.get("profile_picture"),
+            is_active=user_dict.get("is_active", True),
+            created_at=user_dict["created_at"],
+            last_login=user_dict.get("last_login"),
+            oauth_providers=user_dict.get("oauth_providers", [])
+        )
         
-        # Redirect back to frontend with token
-        frontend_url = os.getenv("FRONTEND_URL", "http://localhost:3000")
-        redirect_url = f"{frontend_url}/auth/callback?token={access_token}"
+        logger.info(f"Successfully processed OAuth callback for user: {user.username}")
         
-        return RedirectResponse(redirect_url)
+        return OAuthCallbackResponse(
+            user=user,
+            access_token=result["access_token"],
+            token_type=result["token_type"],
+            expires_in=result["expires_in"]
+        )
         
+    except ValueError as e:
+        logger.error(f"Error processing OAuth callback: {str(e)}")
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(e)
+        )
     except Exception as e:
-        logger.error(f"Error processing Google callback: {str(e)}")
-        return JSONResponse(
-            content={"status": "error", "message": str(e)},
-            status_code=500
+        logger.error(f"Unexpected error in OAuth callback: {str(e)}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Failed to process OAuth callback"
         )
 
 @router.post(
@@ -297,7 +253,7 @@ async def login(
     Raises:
         HTTPException: If authentication fails
     """
-    user = auth_service.authenticate_user(
+    user = await auth_service.authenticate_user(
         credentials.username, 
         credentials.password.get_secret_value()
     )
@@ -336,3 +292,76 @@ async def login(
         username=user["username"],
         permissions=user["permissions"]
     )
+
+@router.get(
+    "/me",
+    response_model=User,
+    summary="Get current user information"
+)
+async def get_current_user(
+    auth_service: AuthenticationService = Depends(get_auth_service),
+    user: Dict[str, Any] = Depends(auth_service.get_current_user)
+):
+    """
+    Get current authenticated user information.
+    
+    Returns comprehensive profile information for the currently
+    authenticated user with OAuth provider details.
+    
+    Args:
+        user: Current authenticated user from JWT token
+        
+    Returns:
+        User profile information
+    """
+    # Convert raw user dictionary to User model
+    return User(
+        id=user["id"],
+        username=user["username"],
+        email=user["email"],
+        display_name=user.get("display_name"),
+        permissions=user["permissions"],
+        profile_picture=user.get("profile_picture"),
+        is_active=user.get("is_active", True),
+        created_at=user["created_at"],
+        last_login=user.get("last_login"),
+        oauth_providers=user.get("oauth_providers", [])
+    )
+
+@router.get(
+    "/oauth/redirect/{provider}",
+    summary="OAuth redirect shortcut"
+)
+async def oauth_redirect(
+    provider: str,
+    redirect_uri: str = Query(...),
+    auth_service: AuthenticationService = Depends(get_auth_service)
+):
+    """
+    Redirect user to OAuth provider authorization page.
+    
+    Convenience endpoint for redirecting users directly to the
+    OAuth authorization page without a client-side redirect.
+    
+    Args:
+        provider: OAuth provider name
+        redirect_uri: URI to redirect after authorization
+        
+    Returns:
+        Redirect to OAuth provider authorization page
+    """
+    try:
+        authorization_url, state = await auth_service.get_authorization_url(
+            provider, 
+            redirect_uri
+        )
+        
+        logger.info(f"Redirecting to {provider} OAuth authorization page")
+        return RedirectResponse(url=authorization_url)
+        
+    except Exception as e:
+        logger.error(f"Error in OAuth redirect: {str(e)}")
+        return JSONResponse(
+            content={"error": str(e)},
+            status_code=400
+        )

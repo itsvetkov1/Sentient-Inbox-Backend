@@ -15,6 +15,7 @@ htmlcov/
 .tox/
 .nox/
 .hypothesis/
+groq_metrics.json
 
 # Environment and configuration
 .env

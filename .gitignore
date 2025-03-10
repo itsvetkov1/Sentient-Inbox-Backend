@@ -37,6 +37,7 @@ ENV/
 *.log
 logs/
 log/
+groq_metrics.json
 
 # Local development
 *.db

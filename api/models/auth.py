@@ -1,19 +1,20 @@
 """
-Authentication Data Models with Google OAuth Support
+Authentication Data Models with OAuth Support
 
 Defines comprehensive data models for authentication operations
 including token generation, validation, user credential management,
-and Google OAuth authentication.
+and OAuth authentication for multiple providers.
 
 Design Considerations:
 - Proper data validation and constraints
 - Type safety with comprehensive annotations
 - Clear documentation of data requirements
 - Security-focused constraints
+- Support for multiple OAuth providers
 """
 
 from datetime import datetime
-from typing import List, Optional
+from typing import List, Optional, Dict, Any
 from pydantic import BaseModel, Field, EmailStr, field_validator, SecretStr
 
 
@@ -146,67 +147,172 @@ class GoogleCallbackRequest(BaseModel):
     )
 
 
-class GoogleTokenResponse(BaseModel):
+class OAuthLoginRequest(BaseModel):
     """
-    Google OAuth token exchange response model.
+    OAuth login request model.
     
-    Contains the access token, refresh token, and other metadata
-    returned from Google's token endpoint.
+    Contains the provider name for initiating the OAuth flow.
     """
+    provider: str = Field(
+        ...,
+        description="OAuth provider name (e.g., 'google', 'microsoft')"
+    )
+    redirect_uri: str = Field(
+        ...,
+        description="URI to redirect to after authentication"
+    )
+
+
+class OAuthCallbackRequest(BaseModel):
+    """
+    OAuth callback request model.
+    
+    Contains the provider name, authorization code, and optional state
+    for processing the OAuth callback.
+    """
+    provider: str = Field(
+        ...,
+        description="OAuth provider name (e.g., 'google', 'microsoft')"
+    )
+    code: str = Field(
+        ...,
+        description="OAuth authorization code"
+    )
+    state: Optional[str] = Field(
+        None,
+        description="State parameter for security verification"
+    )
+    redirect_uri: str = Field(
+        ...,
+        description="URI used in authorization request"
+    )
+
+
+class OAuthUserInfo(BaseModel):
+    """
+    User information from OAuth provider.
+    
+    Contains user profile information from the OAuth provider.
+    """
+    provider: str = Field(
+        ...,
+        description="OAuth provider name"
+    )
+    provider_user_id: str = Field(
+        ...,
+        description="Provider-specific user ID"
+    )
+    email: EmailStr = Field(
+        ...,
+        description="User email address"
+    )
+    name: Optional[str] = Field(
+        None,
+        description="User display name"
+    )
+    picture: Optional[str] = Field(
+        None,
+        description="URL to user profile picture"
+    )
+    
+
+class User(BaseModel):
+    """
+    User model with comprehensive profile information.
+    
+    Contains user profile details, permissions, and OAuth provider
+    information.
+    """
+    id: str = Field(
+        ...,
+        description="Unique user identifier"
+    )
+    username: str = Field(
+        ...,
+        description="Unique username"
+    )
+    email: EmailStr = Field(
+        ...,
+        description="User email address"
+    )
+    display_name: Optional[str] = Field(
+        None,
+        description="User display name"
+    )
+    permissions: List[str] = Field(
+        ...,
+        description="User permissions"
+    )
+    profile_picture: Optional[str] = Field(
+        None,
+        description="URL to user profile picture"
+    )
+    is_active: bool = Field(
+        ...,
+        description="Whether the user is active"
+    )
+    created_at: str = Field(
+        ...,
+        description="User creation timestamp"
+    )
+    last_login: Optional[str] = Field(
+        None,
+        description="Last login timestamp"
+    )
+    oauth_providers: List[str] = Field(
+        default=[],
+        description="List of linked OAuth providers"
+    )
+
+
+class OAuthLoginResponse(BaseModel):
+    """
+    OAuth login response model.
+    
+    Contains the authorization URL for the OAuth flow.
+    """
+    authorization_url: str = Field(
+        ...,
+        description="URL to redirect the user to for OAuth authorization"
+    )
+    state: str = Field(
+        ...,
+        description="State parameter for security verification"
+    )
+    
+
+class OAuthCallbackResponse(BaseModel):
+    """
+    OAuth callback response model.
+    
+    Contains the user information and access token after successful
+    OAuth authentication.
+    """
+    user: User = Field(
+        ...,
+        description="User information"
+    )
     access_token: str = Field(
         ...,
-        description="Google access token"
-    )
-    refresh_token: Optional[str] = Field(
-        None,
-        description="Google refresh token for long-term access"
+        description="JWT access token"
     )
     token_type: str = Field(
         ...,
-        description="Token type, typically 'Bearer'"
+        description="Token type, typically 'bearer'"
     )
     expires_in: int = Field(
         ...,
         description="Token expiration time in seconds"
     )
-    id_token: Optional[str] = Field(
-        None,
-        description="Google ID token containing user information"
-    )
 
 
-class GoogleUserInfo(BaseModel):
+class AvailableProvidersResponse(BaseModel):
     """
-    Google user information model.
+    Available OAuth providers response model.
     
-    Contains user profile information extracted from
-    the verified Google ID token.
+    Contains the list of available OAuth providers for login.
     """
-    email: EmailStr = Field(
+    providers: Dict[str, str] = Field(
         ...,
-        description="User's email address"
-    )
-    name: Optional[str] = Field(
-        None,
-        description="User's full name"
-    )
-    given_name: Optional[str] = Field(
-        None,
-        description="User's first name"
-    )
-    family_name: Optional[str] = Field(
-        None,
-        description="User's last name"
-    )
-    picture: Optional[str] = Field(
-        None,
-        description="URL to user's profile picture"
-    )
-    locale: Optional[str] = Field(
-        None,
-        description="User's locale preference"
-    )
-    google_id: str = Field(
-        ...,
-        description="Google's unique identifier for the user"
+        description="Mapping of provider codes to display names"
     )
