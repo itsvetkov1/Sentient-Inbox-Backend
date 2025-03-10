@@ -1,8 +1,9 @@
 """
-Authentication Data Models
+Authentication Data Models with Google OAuth Support
 
 Defines comprehensive data models for authentication operations
-including token generation, validation, and user credential management.
+including token generation, validation, user credential management,
+and Google OAuth authentication.
 
 Design Considerations:
 - Proper data validation and constraints
@@ -112,4 +113,100 @@ class UserLoginResponse(BaseModel):
     permissions: List[str] = Field(
         ...,
         description="User permissions"
+    )
+
+
+class GoogleAuthRequest(BaseModel):
+    """
+    Google authentication request model with ID token.
+    
+    Contains the ID token returned from Google's OAuth flow
+    for verification and user authentication.
+    """
+    id_token: str = Field(
+        ...,
+        description="Google OAuth ID token"
+    )
+
+
+class GoogleCallbackRequest(BaseModel):
+    """
+    Google OAuth callback request model.
+    
+    Contains the authorization code returned from Google's OAuth
+    flow for exchanging with access and refresh tokens.
+    """
+    code: str = Field(
+        ...,
+        description="Google OAuth authorization code"
+    )
+    state: Optional[str] = Field(
+        None,
+        description="State parameter for security verification"
+    )
+
+
+class GoogleTokenResponse(BaseModel):
+    """
+    Google OAuth token exchange response model.
+    
+    Contains the access token, refresh token, and other metadata
+    returned from Google's token endpoint.
+    """
+    access_token: str = Field(
+        ...,
+        description="Google access token"
+    )
+    refresh_token: Optional[str] = Field(
+        None,
+        description="Google refresh token for long-term access"
+    )
+    token_type: str = Field(
+        ...,
+        description="Token type, typically 'Bearer'"
+    )
+    expires_in: int = Field(
+        ...,
+        description="Token expiration time in seconds"
+    )
+    id_token: Optional[str] = Field(
+        None,
+        description="Google ID token containing user information"
+    )
+
+
+class GoogleUserInfo(BaseModel):
+    """
+    Google user information model.
+    
+    Contains user profile information extracted from
+    the verified Google ID token.
+    """
+    email: EmailStr = Field(
+        ...,
+        description="User's email address"
+    )
+    name: Optional[str] = Field(
+        None,
+        description="User's full name"
+    )
+    given_name: Optional[str] = Field(
+        None,
+        description="User's first name"
+    )
+    family_name: Optional[str] = Field(
+        None,
+        description="User's last name"
+    )
+    picture: Optional[str] = Field(
+        None,
+        description="URL to user's profile picture"
+    )
+    locale: Optional[str] = Field(
+        None,
+        description="User's locale preference"
+    )
+    google_id: str = Field(
+        ...,
+        description="Google's unique identifier for the user"
     )
