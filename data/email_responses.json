@@ -1,12 +1,12 @@
 {
   "responses": [
     {
-      "email_id": "1956b5aded39740f",
-      "response_time": "2025-03-06T15:14:27.223959",
+      "email_id": "1956bfe4134227e3",
+      "response_time": "2025-03-06T17:28:06.874246",
       "response_data": {
-        "sender": "AI Engineer Foundation Europe <aief-europe@calendar.luma-mail.com>",
-        "subject": "Registration confirmed for AIE.F Europe After Hours #29",
-        "response": "Hey there! Could you share the specific time/date, location/virtual link, agenda/objective, and attendee list? This will help us prepare better \ud83d\ude0a"
+        "sender": "Ivailo Tsvetkov <i.b.cvetkov@gmail.com>",
+        "subject": "Letta meettA",
+        "response": "Subject: Meeting Confirmation and Information Request  \n\nDear [Recipient],  \n\nI acknowledge your meeting request for tomorrow at the previous location. To ensure proper preparation, could you kindly:  \n1. Clarify the specific meeting purpose or agenda items  \n2. Confirm the exact attendee list  \n\nPlease advise if the location remains [insert previous meeting location if known] or requires adjustment.  \n\nLooking forward to your confirmation.  \n\nBest regards,  \n[Your Name]"
       }
     }
   ]
