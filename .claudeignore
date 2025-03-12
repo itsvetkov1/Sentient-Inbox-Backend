@@ -73,3 +73,34 @@ email_responses.json
 schedule.json
 meeting_mails.json
 groq_metrics.json
+
+# Generic documentation
+docs/openai.md
+
+# Utility and setup scripts
+bcrypt_fix.py
+setup.ps1
+setup_directories.py
+pre_startup.py
+startup_script.py
+updated_pre_startup.py
+unicode_safe_logging.py
+
+# Memory bank entries (secondary context)
+memory-bank/activeContext.md
+memory-bank/techContext.md
+memory-bank/systemPatterns.md
+memory-bank/progress.md
+memory-bank/productContext.md
+memory-bank/projectbrief.md
+
+# Test files
+api/tests/
+
+# Development configuration
+.clinerules
+
+# Data files (already processed)
+data/config/email_settings.json
+data/metrics/email_stats.json
+data/secure/.initialized
