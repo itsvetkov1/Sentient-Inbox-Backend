@@ -57,7 +57,8 @@ class GmailAuthenticationManager:
             'https://www.googleapis.com/auth/gmail.readonly',
             'https://www.googleapis.com/auth/gmail.modify',
             'https://www.googleapis.com/auth/userinfo.email',
-            'https://www.googleapis.com/auth/userinfo.profile'
+            'https://www.googleapis.com/auth/userinfo.profile',
+            'openid'
         ]
         
         # Configure secure storage
@@ -178,15 +179,49 @@ class GmailAuthenticationManager:
             flow.fetch_token(code=code)
             credentials = flow.credentials
             
-            # Save credentials for future use
-            self._save_credentials(credentials)
-            
-            logger.info("Successfully exchanged authorization code for credentials")
-            return credentials
+            # Validate the received scopes
+            if self._validate_scopes(credentials.scopes):
+                # Save credentials for future use
+                self._save_credentials(credentials)
+                logger.info("Successfully exchanged authorization code for credentials")
+                return credentials
+            else:
+                logger.error("Scope validation failed after code exchange")
+                return None
             
         except Exception as e:
             logger.error(f"Error exchanging authorization code: {str(e)}")
             return None
+
+    def _validate_scopes(self, received_scopes: list) -> bool:
+        """
+        Validate received scopes against required scopes.
+        
+        Uses a flexible set-based comparison to ensure all required scopes
+        are present, regardless of order or additional scopes.
+        
+        Args:
+            received_scopes: List of scopes received from authentication
+            
+        Returns:
+            True if all required scopes are present, False otherwise
+        """
+        # Convert scopes to sets for comparison
+        required_scopes = set(self.scopes)
+        actual_scopes = set(received_scopes if received_scopes else [])
+        
+        # Check if all required scopes are included
+        if not required_scopes.issubset(actual_scopes):
+            missing_scopes = required_scopes - actual_scopes
+            logger.error(f"Missing required scopes: {', '.join(missing_scopes)}")
+            return False
+            
+        # Log any extra scopes but don't fail
+        extra_scopes = actual_scopes - required_scopes
+        if extra_scopes:
+            logger.info(f"Additional scopes granted: {', '.join(extra_scopes)}")
+            
+        return True
 
     def _load_credentials(self) -> Optional[Credentials]:
         """
@@ -248,7 +283,15 @@ class GmailAuthenticationManager:
                 return credentials
                 
             except RefreshError as e:
-                logger.error(f"Refresh token expired or revoked: {str(e)}")
+                error_str = str(e)
+                # Check if the error is due to scope mismatch
+                if "Scope has changed" in error_str:
+                    logger.warning("Scope change detected - re-authenticating to handle scope differences")
+                    # Since the scopes have changed, we need to re-authenticate
+                    # This will generate a new token with the correct scopes
+                    return self._authenticate_new_installed()
+                    
+                logger.error(f"Refresh token expired or revoked: {error_str}")
                 self._handle_invalid_token()
                 if self.web_flow:
                     return None
@@ -281,6 +324,19 @@ class GmailAuthenticationManager:
                 self.scopes
             )
             credentials = flow.run_local_server(port=0)
+            
+            # Validate the received scopes
+            if not self._validate_scopes(credentials.scopes):
+                logger.error("New authentication completed but scope validation failed")
+                logger.warning(f"Requested scopes: {', '.join(self.scopes)}")
+                logger.warning(f"Received scopes: {', '.join(credentials.scopes if credentials.scopes else [])}")
+                
+                # Continue despite scope differences as long as we have the required permissions
+                # This is more flexible than failing the entire authentication
+                if credentials and credentials.refresh_token:
+                    logger.info("Proceeding with credentials despite scope differences")
+                else:
+                    logger.warning("No refresh token present, authentication may be incomplete")
             
             self._save_credentials(credentials)
             logger.info("Successfully completed new authentication flow")

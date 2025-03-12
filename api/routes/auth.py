@@ -33,6 +33,8 @@ from src.auth.oauth_factory import OAuthProviderFactory
 from src.storage.user_repository import UserRepository
 from src.storage.database import init_db
 
+auth_service = get_auth_service()
+
 # Configure logging
 logger = logging.getLogger(__name__)
 
