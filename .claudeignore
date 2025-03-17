@@ -1,23 +1,26 @@
-# Explicitly exclude frontend directory
-frontend/
-G:/git_repos/Sentient-Inbox/frontend/
-/frontend/
+# Optimized .gitignore for Sentient-Inbox-Backend
+# Excludes all non-essential files, test outputs, and temporary artifacts
 
-# Common development files
-*.log
-*.pyc
+#------------------------------------------------------
+# Python core ignores
+#------------------------------------------------------
 __pycache__/
-.pytest_cache/
-*.pyo
-*.pyd
+*.py[cod]
+*$py.class
+*.so
+.Python
 .coverage
+coverage.xml
+coverage_html/
+.pytest_cache/
 htmlcov/
 .tox/
 .nox/
 .hypothesis/
-groq_metrics.json
 
-# Environment and configuration
+#------------------------------------------------------
+# Environments and secrets
+#------------------------------------------------------
 .env
 .venv/
 env/
@@ -26,15 +29,6 @@ ENV/
 .python-version
 .env.*
 *.env
-
-# IDE files
-.idea/
-.vscode/
-*.swp
-*.swo
-.DS_Store
-
-# Project-specific files that may contain sensitive data
 *.pem
 *.key
 client_secret*.json
@@ -43,7 +37,18 @@ credentials*.json
 .keys/
 *.bin
 
-# Build and distribution
+#------------------------------------------------------
+# Runtime data and logs
+#------------------------------------------------------
+*.log
+logs/
+data/secure/backups/
+data/secure/.initialized
+data/secure/user_tokens/
+
+#------------------------------------------------------
+# Build and package files
+#------------------------------------------------------
 build/
 dist/
 *.egg-info/
@@ -51,56 +56,74 @@ dist/
 sdist/
 wheels/
 
+#------------------------------------------------------
 # Database files
+#------------------------------------------------------
 *.db
 *.sqlite3
+data/secure/encrypted_records.bin
+data/secure/key_history.bin
 
-# Temporary files and backups
-data/secure/backups/
-*.bak
-*.tmp
-temp/
-tmp/
+#------------------------------------------------------
+# IDE files and system artifacts
+#------------------------------------------------------
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+.claudeignore
+.claudesync/
+.clinerules
 
-# Git-related
-.git/
-.gitignore
-.gitmodules
-.github/
+#------------------------------------------------------
+# Test files and outputs
+#------------------------------------------------------
+tests/
+api/tests/
+.pytest_cache/
 
-# Project-specific based on your repository
+#------------------------------------------------------
+# Documentation and non-essential configuration
+#------------------------------------------------------
+docs/
+repomix-output.txt
+memory-bank/
+
+#------------------------------------------------------
+# Project-specific temporary and state files
+#------------------------------------------------------
+emails.txt
 email_responses.json
-schedule.json
-meeting_mails.json
 groq_metrics.json
+meeting_mails.json
+schedule.json
+data/config/email_settings.json
+data/metrics/email_stats.json
+data/metrics/groq_metrics.json
 
-# Generic documentation
-docs/openai.md
+#------------------------------------------------------
+# Frontend code (explicitly excluded)
+#------------------------------------------------------
+frontend/
+G:/git_repos/Sentient-Inbox/frontend/
+/frontend/
 
-# Utility and setup scripts
+#------------------------------------------------------
+# Utility scripts
+#------------------------------------------------------
 bcrypt_fix.py
 setup.ps1
+setup_and_run_tests.ps1
 setup_directories.py
 pre_startup.py
 startup_script.py
 updated_pre_startup.py
 unicode_safe_logging.py
-
-# Memory bank entries (secondary context)
-memory-bank/activeContext.md
-memory-bank/techContext.md
-memory-bank/systemPatterns.md
-memory-bank/progress.md
-memory-bank/productContext.md
-memory-bank/projectbrief.md
-
-# Test files
-api/tests/
-
-# Development configuration
-.clinerules
-
-# Data files (already processed)
-data/config/email_settings.json
-data/metrics/email_stats.json
-data/secure/.initialized
+test_runner.py
+test_runner_with_coverage.py
+universal_test_runner.py
+run_storage_tests.py
+oauth-diagnostic.py
+load-credentials-patch.py
+credentials_loader.py

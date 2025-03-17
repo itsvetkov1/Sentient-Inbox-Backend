@@ -1,6 +1,8 @@
 import asyncio
 import logging
 import sys
+import os
+import json
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, Any
@@ -61,6 +63,66 @@ from src.email_processing import (
 
 from src.integrations.gmail.client import GmailClient
 from src.storage.secure import SecureStorage
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger("credentials")
+
+# Define and call the credentials function early
+def load_google_credentials():
+    try:
+        # Print current working directory to help with path issues
+        logger.info(f"Current working directory: {os.getcwd()}")
+        
+        # Specify the exact path to your credentials file
+        credentials_path = "client_secret.json"
+        logger.info(f"Attempting to load credentials from: {credentials_path}")
+        
+        # Check if file exists
+        if not os.path.exists(credentials_path):
+            logger.error(f"ERROR: Credentials file not found at {credentials_path}")
+            return
+            
+        with open(credentials_path, 'r') as file:
+            credentials = json.load(file)
+            logger.info("Successfully loaded JSON file")
+            
+        # Log the structure to verify it contains what we expect
+        logger.info(f"JSON structure keys: {list(credentials.keys())}")
+            
+        # Extract and set environment variables
+        if 'web' in credentials:
+            logger.info("Found 'web' configuration in credentials")
+            os.environ["GOOGLE_CLIENT_ID"] = credentials['web']['client_id']
+            os.environ["GOOGLE_CLIENT_SECRET"] = credentials['web']['client_secret']
+            logger.info(f"Set GOOGLE_CLIENT_ID: {os.environ.get('GOOGLE_CLIENT_ID')[:5]}...")
+            logger.info(f"Set GOOGLE_CLIENT_SECRET: {os.environ.get('GOOGLE_CLIENT_SECRET')[:5]}...")
+            return True
+        elif 'installed' in credentials:
+            logger.info("Found 'installed' configuration in credentials")
+            os.environ["GOOGLE_CLIENT_ID"] = credentials['installed']['client_id']
+            os.environ["GOOGLE_CLIENT_SECRET"] = credentials['installed']['client_secret']
+            logger.info(f"Set GOOGLE_CLIENT_ID: {os.environ.get('GOOGLE_CLIENT_ID')[:5]}...")
+            logger.info(f"Set GOOGLE_CLIENT_SECRET: {os.environ.get('GOOGLE_CLIENT_SECRET')[:5]}...")
+            return True
+        else:
+            logger.error(f"WARNING: Unrecognized credentials format. Available keys: {list(credentials.keys())}")
+            return False
+            
+    except Exception as e:
+        logger.error(f"Error loading Google credentials: {e}")
+        import traceback
+        logger.error(traceback.format_exc())
+        return False
+
+# Call function immediately after definition
+logger.info("==== STARTING GOOGLE CREDENTIALS LOADING ====")
+success = load_google_credentials()
+logger.info("==== COMPLETED GOOGLE CREDENTIALS LOADING ====")
+logger.info(f"GOOGLE_CLIENT_ID environment variable set: {'GOOGLE_CLIENT_ID' in os.environ}")
+logger.info(f"GOOGLE_CLIENT_SECRET environment variable set: {'GOOGLE_CLIENT_SECRET' in os.environ}")
+
+if not success:
+    logger.error("Failed to load Google OAuth credentials. OAuth features will not work.")
 
 # Initialize FastAPI app
 app = FastAPI(
@@ -146,6 +208,8 @@ async def process_email_batch(batch_size: int = 100) -> bool:
     except Exception as e:
         logger.error(f"Error during email processing: {str(e)}", exc_info=True)
         return False
+    
+
 
 async def main():
     retry_delay = 3  # seconds

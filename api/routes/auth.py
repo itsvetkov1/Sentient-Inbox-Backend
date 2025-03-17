@@ -230,6 +230,81 @@ async def oauth_callback(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Failed to process OAuth callback"
         )
+    
+@router.get(
+    "/oauth/callback",
+    response_model=OAuthCallbackResponse,
+    summary="Handle OAuth callback from browser redirect"
+)
+async def oauth_callback_get(
+    code: str = Query(..., description="Authorization code from OAuth provider"),
+    state: str = Query(..., description="State parameter for security verification"),
+    auth_service: AuthenticationService = Depends(get_auth_service)
+):
+    """
+    Process OAuth callback after browser redirect with authorization code.
+    
+    Extracts parameters from query string and processes them, inferring the missing
+    provider and redirect_uri parameters. This allows Google's redirect to work properly.
+    
+    Args:
+        code: Authorization code from OAuth provider
+        state: State parameter for security verification
+        
+    Returns:
+        User information and JWT access token
+    """
+    # For the callback, we need to use the same redirect_uri as in the original request
+    # Since Google doesn't pass it back, we'll use the current endpoint URL
+    provider = "google"  # We know we're testing with Google
+    redirect_uri = "http://127.0.0.1:8000/oauth/callback"
+    
+    logger.info(f"Received OAuth callback for provider {provider} with state {state}")
+    
+    # Use the same processing logic as the POST endpoint
+    try:
+        result = await auth_service.process_oauth_callback(
+            provider,
+            code,
+            redirect_uri
+        )
+        
+        # Extract user and token information
+        user_dict = result["user"]
+        user = User(
+            id=user_dict["id"],
+            username=user_dict["username"],
+            email=user_dict["email"],
+            display_name=user_dict.get("display_name"),
+            permissions=user_dict["permissions"],
+            profile_picture=user_dict.get("profile_picture"),
+            is_active=user_dict.get("is_active", True),
+            created_at=user_dict["created_at"],
+            last_login=user_dict.get("last_login"),
+            oauth_providers=user_dict.get("oauth_providers", [])
+        )
+        
+        logger.info(f"Successfully processed OAuth callback for user: {user.username}")
+        
+        return OAuthCallbackResponse(
+            user=user,
+            access_token=result["access_token"],
+            token_type=result["token_type"],
+            expires_in=result["expires_in"]
+        )
+        
+    except ValueError as e:
+        logger.error(f"Error processing OAuth callback: {str(e)}")
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(e)
+        )
+    except Exception as e:
+        logger.error(f"Unexpected error in OAuth callback: {str(e)}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Failed to process OAuth callback"
+        )
 
 @router.post(
     "/login",

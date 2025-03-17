@@ -1,14 +1,16 @@
 """
-Google OAuth Provider Implementation
+Google OAuth Provider Implementation with File-Based Credentials
 
 Implements the Google OAuth provider service with comprehensive token
-management, user profile handling, and error recovery.
+management, user profile handling, and error recovery. Supports loading
+credentials from environment variables or directly from client_secret.json.
 
 Design Considerations:
 - Robust error handling with retry mechanism
 - Comprehensive token validation and refresh
 - Detailed logging for troubleshooting
 - Full Google API scope support
+- Flexible credential loading from multiple sources
 - Secure storage of client credentials
 """
 
@@ -16,6 +18,8 @@ import os
 import json
 import logging
 import time
+import uuid
+from pathlib import Path
 from typing import Dict, List, Optional, Tuple, Any
 import aiohttp
 from datetime import datetime, timedelta
@@ -26,11 +30,12 @@ logger = logging.getLogger(__name__)
 
 class GoogleOAuthProvider(OAuthProvider):
     """
-    Google OAuth2 provider implementation.
+    Google OAuth2 provider implementation with file-based credentials support.
     
     Implements the OAuth provider interface for Google authentication
     with comprehensive error handling, token management, and user
-    profile handling.
+    profile handling. Supports loading credentials from environment
+    variables or directly from client_secret.json files.
     """
     
     # Google OAuth endpoints
@@ -44,21 +49,33 @@ class GoogleOAuthProvider(OAuthProvider):
         """
         Initialize the Google OAuth provider with client credentials.
         
-        Loads client credentials from environment variables and configures
-        default scopes for Gmail access.
+        Attempts to load credentials in the following order:
+        1. From GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET environment variables
+        2. From client_secret.json file in various common locations
         
         Raises:
-            ValueError: If required environment variables are missing
+            ValueError: If credentials cannot be loaded from any source
         """
+        # First attempt to load from environment variables
         self.client_id = os.getenv("GOOGLE_CLIENT_ID")
         self.client_secret = os.getenv("GOOGLE_CLIENT_SECRET")
+        credentials_source = "environment variables"
         
+        # If environment variables are not set, attempt to load from JSON file
         if not self.client_id or not self.client_secret:
-            raise ValueError(
-                "Google OAuth configuration incomplete. "
-                "Please set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET environment variables."
-            )
+            logger.info("OAuth credentials not found in environment variables, attempting to load from file")
+            credentials_loaded = self._load_credentials_from_file()
             
+            if credentials_loaded:
+                credentials_source = "client_secret.json file"
+            else:
+                # If we couldn't load from either source, raise an error
+                raise ValueError(
+                    "Google OAuth configuration incomplete. "
+                    "Please set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET environment variables "
+                    "or ensure a valid client_secret.json file is available."
+                )
+        
         # Default scopes for Gmail access
         self.default_scopes = [
             "https://www.googleapis.com/auth/userinfo.email",
@@ -67,7 +84,63 @@ class GoogleOAuthProvider(OAuthProvider):
             "https://www.googleapis.com/auth/gmail.modify"
         ]
         
-        logger.info("Google OAuth provider initialized successfully")
+        logger.info(f"Google OAuth provider initialized successfully using {credentials_source}")
+    
+    def _load_credentials_from_file(self) -> bool:
+        """
+        Load OAuth credentials from client_secret.json file.
+        
+        Attempts to find and load credentials from client_secret.json in various
+        common locations relative to the current working directory and module path.
+        
+        Returns:
+            bool: True if credentials were successfully loaded, False otherwise
+        """
+        # Define common locations where the file might be found
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        project_root = os.path.abspath(os.path.join(current_dir, "..", ".."))
+        
+        potential_paths = [
+            "client_secret.json",  # Current working directory
+            os.path.join(current_dir, "client_secret.json"),  # Module directory
+            os.path.join(project_root, "client_secret.json"),  # Project root
+            os.path.join(os.path.expanduser("~"), "client_secret.json"),  # User home
+            # Add additional paths if needed for your project structure
+        ]
+        
+        # Debug log showing where we're looking
+        logger.debug(f"Looking for client_secret.json in: {', '.join(potential_paths)}")
+        
+        # Try each potential path
+        for path in potential_paths:
+            try:
+                if os.path.exists(path):
+                    logger.info(f"Found credentials file at: {path}")
+                    with open(path, 'r') as file:
+                        credentials = json.load(file)
+                    
+                    # Extract client ID and secret based on the file structure
+                    if 'web' in credentials:
+                        # Web application credentials
+                        self.client_id = credentials['web']['client_id']
+                        self.client_secret = credentials['web']['client_secret']
+                        logger.info("Loaded web application credentials from client_secret.json")
+                        return True
+                    elif 'installed' in credentials:
+                        # Installed/Desktop application credentials
+                        self.client_id = credentials['installed']['client_id']
+                        self.client_secret = credentials['installed']['client_secret']
+                        logger.info("Loaded installed application credentials from client_secret.json")
+                        return True
+                    else:
+                        # Unknown structure, log available keys
+                        logger.warning(f"Unrecognized credentials format in {path}. Available keys: {list(credentials.keys())}")
+            except Exception as e:
+                logger.warning(f"Error loading credentials from {path}: {str(e)}")
+        
+        # If we get here, we couldn't load from any file
+        logger.warning("Failed to load credentials from any client_secret.json location")
+        return False
     
     @property
     def provider_name(self) -> str:
@@ -87,7 +160,6 @@ class GoogleOAuthProvider(OAuthProvider):
         """
         # Generate random state if not provided
         if not state:
-            import uuid
             state = str(uuid.uuid4())
         
         # Construct authorization URL
@@ -107,6 +179,7 @@ class GoogleOAuthProvider(OAuthProvider):
         auth_url = f"{self.AUTH_URL}?{query_string}"
         
         logger.debug(f"Generated Google authorization URL with state: {state}")
+        logger.debug(f"Using redirect URI: {redirect_uri}")
         return auth_url, state
     
     async def exchange_code_for_tokens(self, code: str, redirect_uri: str) -> Dict[str, Any]:
