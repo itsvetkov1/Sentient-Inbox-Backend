@@ -154,7 +154,7 @@ class AuthenticationService:
             return None
         
         logger.info(f"User authenticated successfully: {username}")
-        return user.to_dict()
+        return user
     
     async def get_authorization_url(self, provider: str, redirect_uri: str) -> Tuple[str, str]:
         """
@@ -257,16 +257,16 @@ class AuthenticationService:
         if user:
             # User exists, return data
             logger.info(f"Found existing user for {provider} ID {provider_user_id}")
-            return user.to_dict()
+            return user
             
         # Try to find user by email
         user = await UserRepository.get_user_by_email(provider_email)
         
         if user:
             # User exists with this email, link OAuth account
-            logger.info(f"Linking {provider} account to existing user: {user.username}")
+            logger.info(f"Linking {provider} account to existing user: {user['username']}")
             # User will be linked when we save the OAuth token
-            return user.to_dict()
+            return user
             
         # Create new user
         # Generate username from email
@@ -297,7 +297,7 @@ class AuthenticationService:
                 profile_picture=user_info.get("picture")
             )
             logger.info(f"Created new user from {provider} authentication: {username}")
-            return user.to_dict()
+            return user
         except Exception as e:
             logger.error(f"Failed to create user from OAuth profile: {str(e)}")
             raise ValueError(f"Failed to create user: {str(e)}")
@@ -388,7 +388,7 @@ class AuthenticationService:
         user = await UserRepository.get_user_by_username(token_data.username)
         
         if user:
-            return user.to_dict()
+            return user
             
         # Check legacy users (for backward compatibility)
         legacy_user = self.legacy_users_db.get(token_data.username)
@@ -403,7 +403,7 @@ class AuthenticationService:
                     profile_picture=legacy_user.get("profile_picture")
                 )
                 logger.info(f"Migrated legacy user to database during token validation: {token_data.username}")
-                return user.to_dict()
+                return user
             except Exception as e:
                 logger.error(f"Failed to migrate legacy user {token_data.username}: {str(e)}")
                 # Return legacy user data

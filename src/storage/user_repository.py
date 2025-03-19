@@ -15,7 +15,7 @@ Design Considerations:
 import logging
 import json
 from datetime import datetime, timedelta
-from typing import Optional, List, Dict, Any
+from typing import Optional, List, Dict, Any, Tuple
 from sqlalchemy.orm import Session
 from sqlalchemy import or_, and_
 
@@ -31,6 +31,9 @@ class UserRepository:
     
     Implements comprehensive data access operations for user management
     with proper security, error handling, and transaction management.
+    
+    All methods return dictionaries rather than ORM objects to prevent
+    session-related issues when objects are accessed after the session closes.
     """
     
     @staticmethod
@@ -40,7 +43,7 @@ class UserRepository:
         display_name: Optional[str] = None,
         permissions: Optional[List[str]] = None,
         profile_picture: Optional[str] = None
-    ) -> User:
+    ) -> Dict[str, Any]:
         """
         Create a new user with specified attributes.
         
@@ -52,7 +55,7 @@ class UserRepository:
             profile_picture: Optional profile picture URL
             
         Returns:
-            Created user object
+            Dictionary containing user data
             
         Raises:
             ValueError: If user with email or username already exists
@@ -82,14 +85,29 @@ class UserRepository:
             try:
                 session.add(user)
                 session.commit()
+                
+                # Important: Convert to dictionary before returning to avoid session issues
+                user_dict = {
+                    "id": user.id,
+                    "email": user.email,
+                    "username": user.username,
+                    "display_name": user.display_name,
+                    "permissions": json.loads(user.permissions) if isinstance(user.permissions, str) else user.permissions,
+                    "profile_picture": user.profile_picture,
+                    "is_active": user.is_active,
+                    "created_at": user.created_at.isoformat() if user.created_at else None,
+                    "last_login": user.last_login.isoformat() if user.last_login else None,
+                    "oauth_providers": []  # No providers yet for a new user
+                }
+                
                 logger.info(f"Created new user: {username} ({email})")
-                return user
+                return user_dict
             except Exception as e:
                 logger.error(f"Failed to create user {email}: {str(e)}")
                 raise RuntimeError(f"Failed to create user: {str(e)}")
     
     @staticmethod
-    async def get_user_by_email(email: str) -> Optional[User]:
+    async def get_user_by_email(email: str) -> Optional[Dict[str, Any]]:
         """
         Retrieve a user by email address.
         
@@ -97,13 +115,32 @@ class UserRepository:
             email: Email address to search for
             
         Returns:
-            User object if found, None otherwise
+            Dictionary containing user data if found, None otherwise
         """
         with get_db_session() as session:
-            return session.query(User).filter(User.email == email).first()
+            user = session.query(User).filter(User.email == email).first()
+            
+            if not user:
+                return None
+                
+            # Convert to dictionary before the session closes
+            providers = [token.provider for token in user.oauth_tokens]
+            
+            return {
+                "id": user.id,
+                "email": user.email,
+                "username": user.username,
+                "display_name": user.display_name,
+                "permissions": json.loads(user.permissions) if isinstance(user.permissions, str) else user.permissions,
+                "profile_picture": user.profile_picture,
+                "is_active": user.is_active,
+                "created_at": user.created_at.isoformat() if user.created_at else None,
+                "last_login": user.last_login.isoformat() if user.last_login else None,
+                "oauth_providers": providers
+            }
     
     @staticmethod
-    async def get_user_by_username(username: str) -> Optional[User]:
+    async def get_user_by_username(username: str) -> Optional[Dict[str, Any]]:
         """
         Retrieve a user by username.
         
@@ -111,13 +148,32 @@ class UserRepository:
             username: Username to search for
             
         Returns:
-            User object if found, None otherwise
+            Dictionary containing user data if found, None otherwise
         """
         with get_db_session() as session:
-            return session.query(User).filter(User.username == username).first()
+            user = session.query(User).filter(User.username == username).first()
+            
+            if not user:
+                return None
+                
+            # Convert to dictionary before the session closes
+            providers = [token.provider for token in user.oauth_tokens]
+            
+            return {
+                "id": user.id,
+                "email": user.email,
+                "username": user.username,
+                "display_name": user.display_name,
+                "permissions": json.loads(user.permissions) if isinstance(user.permissions, str) else user.permissions,
+                "profile_picture": user.profile_picture,
+                "is_active": user.is_active,
+                "created_at": user.created_at.isoformat() if user.created_at else None,
+                "last_login": user.last_login.isoformat() if user.last_login else None,
+                "oauth_providers": providers
+            }
     
     @staticmethod
-    async def get_user_by_oauth(provider: str, provider_user_id: str) -> Optional[User]:
+    async def get_user_by_oauth(provider: str, provider_user_id: str) -> Optional[Dict[str, Any]]:
         """
         Retrieve a user by OAuth provider and provider-specific ID.
         
@@ -126,7 +182,7 @@ class UserRepository:
             provider_user_id: Provider-specific user ID
             
         Returns:
-            User object if found, None otherwise
+            Dictionary containing user data if found, None otherwise
         """
         with get_db_session() as session:
             token = session.query(OAuthToken).filter(
@@ -136,9 +192,26 @@ class UserRepository:
                 )
             ).first()
             
-            if token:
-                return token.user
-            return None
+            if not token or not token.user:
+                return None
+                
+            user = token.user
+            
+            # Convert to dictionary before the session closes
+            providers = [t.provider for t in user.oauth_tokens]
+            
+            return {
+                "id": user.id,
+                "email": user.email,
+                "username": user.username,
+                "display_name": user.display_name,
+                "permissions": json.loads(user.permissions) if isinstance(user.permissions, str) else user.permissions,
+                "profile_picture": user.profile_picture,
+                "is_active": user.is_active,
+                "created_at": user.created_at.isoformat() if user.created_at else None,
+                "last_login": user.last_login.isoformat() if user.last_login else None,
+                "oauth_providers": providers
+            }
     
     @staticmethod
     async def update_user_last_login(user_id: str) -> bool:
@@ -171,7 +244,7 @@ class UserRepository:
         refresh_token: Optional[str],
         expires_in: int,
         scopes: List[str]
-    ) -> OAuthToken:
+    ) -> Dict[str, Any]:
         """
         Save or update OAuth token for a user.
         
@@ -186,7 +259,7 @@ class UserRepository:
             scopes: List of granted OAuth scopes
             
         Returns:
-            Created or updated OAuthToken object
+            Dictionary containing token information
             
         Raises:
             ValueError: If user does not exist
@@ -214,6 +287,8 @@ class UserRepository:
                 )
             ).first()
             
+            token_dict = {}
+            
             if existing_token:
                 # Update existing token
                 existing_token.provider_user_id = provider_user_id
@@ -227,6 +302,19 @@ class UserRepository:
                 
                 token = existing_token
                 logger.info(f"Updated OAuth token for user {user_id} and provider {provider}")
+                
+                # Build token dictionary
+                token_dict = {
+                    "id": token.id,
+                    "user_id": token.user_id,
+                    "provider": token.provider,
+                    "provider_user_id": token.provider_user_id,
+                    "provider_email": token.provider_email,
+                    "expires_at": token.expires_at.isoformat() if token.expires_at else None,
+                    "scopes": token.scopes.split(",") if token.scopes else [],
+                    "created_at": token.created_at.isoformat() if token.created_at else None,
+                    "updated_at": token.updated_at.isoformat() if token.updated_at else None
+                }
             else:
                 # Create new token
                 token = OAuthToken(
@@ -247,7 +335,22 @@ class UserRepository:
             
             try:
                 session.commit()
-                return token
+                
+                # If token_dict wasn't set (for new tokens), build it now
+                if not token_dict:
+                    token_dict = {
+                        "id": token.id,
+                        "user_id": token.user_id,
+                        "provider": token.provider,
+                        "provider_user_id": token.provider_user_id,
+                        "provider_email": token.provider_email,
+                        "expires_at": token.expires_at.isoformat() if token.expires_at else None,
+                        "scopes": token.scopes.split(",") if token.scopes else [],
+                        "created_at": token.created_at.isoformat() if token.created_at else None,
+                        "updated_at": token.updated_at.isoformat() if token.updated_at else None
+                    }
+                
+                return token_dict
             except Exception as e:
                 logger.error(f"Failed to save OAuth token for user {user_id}: {str(e)}")
                 raise RuntimeError(f"Failed to save OAuth token: {str(e)}")
@@ -272,7 +375,7 @@ class UserRepository:
                 
             tokens = query.all()
             
-            # Decrypt token values
+            # Decrypt token values and convert to dictionaries
             result = []
             for token in tokens:
                 result.append({
@@ -283,10 +386,10 @@ class UserRepository:
                     "access_token": decrypt_value(token.access_token),
                     "refresh_token": decrypt_value(token.refresh_token) if token.refresh_token else None,
                     "token_type": token.token_type,
-                    "expires_at": token.expires_at.isoformat(),
+                    "expires_at": token.expires_at.isoformat() if token.expires_at else None,
                     "scopes": token.scopes.split(",") if token.scopes else [],
-                    "created_at": token.created_at.isoformat(),
-                    "updated_at": token.updated_at.isoformat()
+                    "created_at": token.created_at.isoformat() if token.created_at else None,
+                    "updated_at": token.updated_at.isoformat() if token.updated_at else None
                 })
                 
             return result
